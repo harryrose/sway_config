@@ -24,6 +24,8 @@ set $term termite
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
+set $browser google-chrome-stable --new-window
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -93,7 +95,9 @@ focus_follows_mouse no
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-
+    
+    bindsym $mod+Backspace exec $browser
+    
     # Kill focused window
     bindsym $mod+Shift+q kill
 
