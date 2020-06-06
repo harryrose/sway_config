@@ -17,7 +17,7 @@ include ~/.config/sway/local.d/*
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
-font pango:Fira Code Retina, Awesome 8
+font pango:FiraCode Nerd Font 8
 
 bindsym Mod1+Tab exec bash -c 'rofi -combi-modi window#drun#ssh -theme solarized -font "Fira Code Regular 10" -show combi'
 
@@ -32,7 +32,7 @@ set $term termite
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
-set $browser google-chrome-stable --new-window
+set $browser firefox --new-window
 
 ### Output configuration
 #
@@ -52,7 +52,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' \
+         timeout 300 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
