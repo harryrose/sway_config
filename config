@@ -30,6 +30,14 @@ set $browser google-chrome-stable --new-window
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+set $displayLeft  eDP-1
+set $displayMid   DP-2
+set $displayRight DP-3
+
+output $displayLeft   pos 0    0 res 1920x1080
+output $displayMid    pos 1920 0 res 1920x1080
+output $displayRight  pos 3840 0 res 1920x1080
 #
 # Example configuration:
 #
@@ -46,6 +54,8 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
+
+bindsym $mod+l exec swaylock -f -c 000000
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -130,6 +140,10 @@ focus_follows_mouse no
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+
+    bindsym $mod+Shift+KP_Left    move workspace to $displayLeft
+    bindsym $mod+Shift+KP_Begin   move workspace to $displayMid
+    bindsym $mod+Shift+KP_Right   move workspace to $displayRight
 #
 # Workspaces:
 #
@@ -252,3 +266,6 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+bindsym $mod+XF86AudioMute exec $term -e pamix -t "pamix"
+for_window [title="pamix" app_id="termite"] floating enable
