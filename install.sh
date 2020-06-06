@@ -4,7 +4,7 @@
 # Installs the dependencies for this configuration
 #
 
-yay -S swayidle swaylock slurp i3blocks mako pamix-git grim wl-clipboard termite nerd-fonts-fira-code
+yay -S swayidle swaylock slurp i3blocks mako pamix-git grim wl-clipboard termite nerd-fonts-fira-code wf-recorder
 
 termiteConfig=~/.config/termite/config
 mkdir -p $(dirname $termiteConfig)

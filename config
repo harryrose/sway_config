@@ -235,6 +235,14 @@ mode "screenshot" {
   bindsym r exec ~/.config/sway/slurp-region.sh && swaymsg mode default
 }
 bindsym $mod+c mode "screenshot"
+
+mode "screencap" {
+  bindsym $mod+Escape exec ~/.config/sway/record-stop.sh && swaymsg mode default
+  bindsym w exec --no-startup-id ~/.config/sway/record-window.sh
+  bindsym r exec --no-startup-id ~/.config/sway/record-region.sh
+}
+bindsym $mod+x mode "screencap"
+
 #
 # Status Bar:
 #
