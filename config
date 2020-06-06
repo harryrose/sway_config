@@ -4,6 +4,14 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+# Read any definitions specific to this host
+
+# Local configuration is configuration that should be applied to this host only.
+# It is not committed to the repository.
+#
+# see local.d/conf.example 
+include ~/.config/sway/local.d/*
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -18,7 +26,7 @@ set $left Left
 set $down Down
 set $up Up
 set $right Right
-# Your preferred terminal emulator
+# Your preferred t~/.config/sway/local.derminal emulator
 set $term termite
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
@@ -31,13 +39,6 @@ set $browser google-chrome-stable --new-window
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
-set $displayLeft  eDP-1
-set $displayMid   DP-2
-set $displayRight DP-3
-
-output $displayLeft   pos 0    0 res 1920x1080
-output $displayMid    pos 1920 0 res 1920x1080
-output $displayRight  pos 3840 0 res 1920x1080
 #
 # Example configuration:
 #

@@ -1,0 +1,15 @@
+# This defines configuration that should not be made globally available because it
+# is specific to a particular host.
+
+# Configure displays and convenience variables
+# ---
+# To list displays:
+#  swaymsg -t get_outputs
+# ---
+# set $displayLeft  eDP-1
+# set $displayMid   DP-2
+# set $displayRight DP-3
+#
+# output $displayLeft   pos 0    0 res 1920x1080
+# output $displayMid    pos 1920 0 res 1920x1080
+# output $displayRight  pos 3840 0 res 1920x1080
