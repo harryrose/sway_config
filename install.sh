@@ -4,21 +4,15 @@
 # Installs the dependencies for this configuration
 #
 
-yay -S swayidle swaylock slurp i3blocks mako pamix-git grim wl-clipboard termite nerd-fonts-fira-code wf-recorder
+yay -S swayidle swaylock slurp i3blocks mako pamix-git grim wl-clipboard nerd-fonts-fira-code wf-recorder alacritty
 
-termiteConfig=~/.config/termite/config
-mkdir -p $(dirname $termiteConfig)
+terminalConfig=~/.config/alacritty/alacritty.yml
+mkdir -p $(dirname $terminalConfig)
 
-if [[ ! -f $termiteConfig ]]
+if [[ ! -f $terminalConfig ]]
 then
-  echo "Writing termite configuration to $termiteConfig";
-  echo "[colors]" > $termiteConfig
-  echo "background=#000000" >> $termiteConfig
-  echo  >> $termiteConfig
-  echo "[options]" >> $termiteConfig
-  echo "font = FiraCode Nerd Font Mono 10" >> $termiteConfig
-
+  ln -s `pwd`/alacritty.yml $terminalConfig
 else
-  echo "Termite configuration exists at $termiteConfig. Will not overwrite"
+  echo "Terminal configuration exists at $terminalConfig. Will not overwrite"
 fi
 
