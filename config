@@ -21,6 +21,8 @@ set {
 ### Look and Feel
 set {
   $font FiraCode Nerd Font 8
+  $innerGap 3
+  $outerGap 3
 }
 
 ### Workspaces
@@ -64,7 +66,7 @@ bindsym {
   # Kill focused window
   $level2+q kill
   # Reload configuration
-  $level2+c reload
+  --release $level2+c reload
   # application switcher
   $alt+Tab exec $switcher 
   # Exit sway (logs you out of your Wayland session)
@@ -78,7 +80,7 @@ bindsym {
   # Start the browser
   $level1+Backspace exec $browser
   # Open the audio mixer
-  $level1+XF86AudioMute exec $term -e $audioMixer
+  $level1+XF86AudioMute exec $term -t "mixer" -e $audioMixer
 }
 
 ### Layouts
@@ -270,6 +272,24 @@ bar {
 exec mako --default-timeout=5000
 
 for_window [class="Slack"] move to workspace $ws_slack
-for_window [title="pamix" app_id="termite"] floating enable
+for_window [title="mixer" app_id="Alacritty"] floating enable 
+for_window [app_id="Alacritty"] opacity 0.9
 
-include /etc/sway/config.d/*
+smart_gaps on
+gaps inner $innerGap
+gaps outer $outerGap
+
+# include /etc/sway/config.d/*
+
+set $cl_high #009ddc
+set $cl_indi #d9d8d8
+set $cl_back #231f20
+set $cl_fore #d9d8d8
+set $cl_urge #ee2e24
+
+# Colors                border   bg       text     indi     childborder
+client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
+client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
+ 
