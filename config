@@ -9,7 +9,7 @@ set {
   $audioMixer pamix -t "pamix"
   $browser firefox --new-window
   $lock swaylock -f -c 000000
-  $switcher bash -c 'rofi -combi-modi window#drun#ssh -theme solarized -font "Fira Code Regular 10" -show combi'
+  $switcher alacritty -t "launcher" -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
   $term alacritty
 }
 
@@ -274,6 +274,7 @@ exec mako --default-timeout=5000
 for_window [class="Slack"] move to workspace $ws_slack
 for_window [title="mixer" app_id="Alacritty"] floating enable 
 for_window [app_id="Alacritty"] opacity 0.9
+for_window [title="launcher"] floating enable, opacity 0.9, border pixel
 
 smart_gaps on
 gaps inner $innerGap
