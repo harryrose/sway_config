@@ -4,7 +4,7 @@
 # Installs the dependencies for this configuration
 #
 
-yay -S swayidle swaylock slurp waybar mako pamix-git grim wl-clipboard nerd-fonts-fira-code wf-recorder alacritty
+yay -S swayidle swaylock slurp waybar mako pamix-git grim wl-clipboard nerd-fonts-fira-code wf-recorder alacritty fzf
 
 terminalConfig=~/.config/alacritty/alacritty.yml
 waybarConfig=~/.config/waybar/
