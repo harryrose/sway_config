@@ -127,6 +127,7 @@ bindsym {
 }
 
 ### Workspaces 
+set $nextFree ~/.config/sway/next-workspace.sh
 bindsym {
   # level1 = switch workspace
   # level2 = move container to workspace
@@ -143,7 +144,8 @@ bindsym {
   $level1+9 workspace $ws9
   $level1+0 workspace $ws_slack
   $level1+minus scratchpad show
-  
+  $level1+slash exec $nextFree switch
+
   # switch workspaces using numberpad
   $level1+KP_End workspace $ws1
   $level1+KP_Down workspace $ws2
@@ -168,7 +170,8 @@ bindsym {
   $level2+9 move container to workspace $ws9
   $level2+0 move container to workspace $ws_slack
   $level2+minus move scratchpad
-    
+  $level2+slash exec $nextFree move
+  
   $level2+KP_End move container to workspace $ws1
   $level2+KP_Down move container to workspace $ws2
   $level2+KP_Next move container to workspace $ws3
