@@ -7,7 +7,7 @@ include ~/.config/sway/local.d/*
 ### Applications
 set {
   $audioMixer pamix -t "pamix"
-  $browser firefox --new-window
+  $browser google-chrome-stable --new-window
   $lock swaylock -f -c 000000
   $switcher alacritty -t "launcher" -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
   $term alacritty
@@ -81,6 +81,7 @@ bindsym {
   $level1+Backspace exec $browser
   # Open the audio mixer
   $level1+XF86AudioMute exec $term -t "mixer" -e $audioMixer
+  $level1+numbersign exec ~/.config/sway/date-convert.sh
 }
 
 ### Layouts
