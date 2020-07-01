@@ -69,6 +69,9 @@ bindsym {
   --release $level2+c reload
   # application switcher
   $alt+Tab exec $switcher 
+  # switch workspace
+  $level1+Tab exec ~/.config/sway/switch-workspace.sh
+  $level2+r exec alacritty -t "rename workspace" -e ~/.config/sway/rename-workspace.sh
   # Exit sway (logs you out of your Wayland session)
   $level2+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 }
@@ -277,6 +280,8 @@ exec mako --default-timeout=5000
 
 for_window [class="Slack"] move to workspace $ws_slack
 for_window [title="mixer" app_id="Alacritty"] floating enable 
+for_window [title="switch workspace" app_id="Alacritty"] floating enable 
+for_window [title="rename workspace" app_id="Alacritty"] floating enable 
 for_window [app_id="Alacritty"] opacity 0.9
 for_window [title="launcher"] floating enable, opacity 0.9, border pixel
 
