@@ -233,6 +233,22 @@ input "type:keyboard" {
   xkb_variant ,nodeadkeys
 }
 
+input "1386:827:Wacom_Intuos_S_2_Pad" {
+  drag_lock disabled
+  drag disabled
+  natural_scroll enabled
+  map_to_output $displayMid
+}
+
+# The pen needs to map to the screen, not the tablet
+
+input "1386:827:Wacom_Intuos_S_2_Pen" {
+  drag_lock disabled
+  drag disabled
+  natural_scroll enabled
+  map_to_output $displayMid
+}
+
 focus_follows_mouse no
 floating_modifier $mod normal
 
