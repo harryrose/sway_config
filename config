@@ -193,6 +193,7 @@ bindsym {
   $level1+r mode "resize"
   $level1+c mode "screenshot"
   $level1+x mode "screencap"
+  $level1+o mode "opacity"
 }
 
 ### Media Keys
@@ -284,6 +285,14 @@ mode "screencap" {
     $level1+Escape exec ~/.config/sway/record-stop.sh && swaymsg mode default
     w exec --no-startup-id ~/.config/sway/record-window.sh
     r exec --no-startup-id ~/.config/sway/record-region.sh
+  }
+}
+
+mode "opacity" {
+  bindsym {
+    Escape mode "default"
+    $up opacity plus 0.05
+    $down opacity minus 0.05
   }
 }
 
