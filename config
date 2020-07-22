@@ -10,6 +10,7 @@ set {
   $browser google-chrome-stable --new-window
   $lock swaylock -f -c 000000
   $switcher alacritty -t "launcher" -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
+  $timerStart alacritty -t "start" -e bash -c "~/.config/sway/watson.sh start"
   $term alacritty
 }
 
@@ -74,6 +75,12 @@ bindsym {
   $level2+r exec alacritty -t "rename workspace" -e ~/.config/sway/rename-workspace.sh
   # Exit sway (logs you out of your Wayland session)
   $level2+e exec swaynag -t warning -m 'Exit sway?.' -b 'Exit' 'swaymsg exit' -b 'Power Off' 'exec poweroff' -b 'Reboot' 'exec reboot'
+}
+
+### Time tracking
+bindsym {
+  $level1+period exec --no-startup-id ~/.config/sway/watson.sh stop
+  $level1+comma exec $timerStart 
 }
 
 ### Quick-Launch
@@ -296,6 +303,7 @@ mode "opacity" {
   }
 }
 
+
 bar {
     position top
     swaybar_command waybar
@@ -310,6 +318,7 @@ for_window [title="switch workspace" app_id="Alacritty"] floating enable
 for_window [title="rename workspace" app_id="Alacritty"] floating enable 
 for_window [app_id="Alacritty"] opacity 0.9
 for_window [title="launcher"] floating enable, opacity 0.9, border pixel
+for_window [app_id="Alacritty" title="start"] floating enable, opacity 0.9, border pixel
 
 smart_gaps on
 gaps inner $innerGap
