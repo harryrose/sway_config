@@ -17,6 +17,9 @@ case $1 in
     watson projects | fzf --print-query | xargs watson start  
     notify-send "Timer" "$(watson status -p) started"
     ;;
+  "notify-status")
+    notify-send "Timer" "$(watson status)"
+    ;;
   *)
     echo "Unknown command $1"
     exit 2
