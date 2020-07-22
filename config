@@ -82,6 +82,7 @@ bindsym {
   $level1+period exec --no-startup-id ~/.config/sway/watson.sh stop
   $level1+comma exec $timerStart 
   $level2+comma exec ~/.config/sway/watson.sh notify-status
+  $level2+period exec ~/.config/sway/watson.sh restart
 }
 
 ### Quick-Launch
