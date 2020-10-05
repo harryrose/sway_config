@@ -23,6 +23,9 @@ case $1 in
   "notify-status")
     notify-send "Timer" "$(watson status)"
     ;;
+  "logday")
+    watson log -d 
+    ;;
   *)
     echo "Unknown command $1"
     exit 2

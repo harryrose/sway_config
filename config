@@ -10,13 +10,15 @@ set {
   $browser google-chrome-stable --new-window
   $lock swaylock -f -c 000000
   $switcher alacritty -t "launcher" -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
-  $timerStart alacritty -t "start" -e bash -c "~/.config/sway/watson.sh start"
+  $timerStart alacritty -t "timer" -e bash -c "~/.config/sway/watson.sh start"
+  $timerLog alacritty -t "timer" -e bash -c "~/.config/sway/watson.sh logday"
   $term alacritty
 }
 
 ### Behaviour
 set {
   $lockAfterSeconds 300
+  $monitorsOffAfterSeconds 310
 }
 
 ### Look and Feel
@@ -49,6 +51,7 @@ set {
   $level1 $mod
   $level2 $mod+Shift
   $level3 $mod+$alt
+  $level4 $mod+$alt+Ctrl
 }
 
 ### Directional Keys
@@ -83,6 +86,7 @@ bindsym {
   $level1+comma exec $timerStart 
   $level2+comma exec ~/.config/sway/watson.sh notify-status
   $level2+period exec ~/.config/sway/watson.sh restart
+  $level1+semicolon exec $timerLog
 }
 
 ### Quick-Launch
@@ -94,6 +98,7 @@ bindsym {
   # Open the audio mixer
   $level1+XF86AudioMute exec $term -t "mixer" -e $audioMixer
   $level1+numbersign exec ~/.config/sway/date-convert.sh
+  $level1+Y exec yubioath-desktop
 }
 
 ### Layouts
@@ -137,6 +142,10 @@ bindsym {
   $level3+$left move workspace to $displayLeft
   $level3+$down move workspace to $displayMid
   $level3+right move workspace to $displayRight
+  
+  $level4+$left exec ~/.config/sway/swap_workspaces.py $displayMid $displayLeft
+  $level4+$right exec ~/.config/sway/swap_workspaces.py $displayMid $displayRight
+  $level4+$up exec ~/.config/sway/swap_workspaces.py $displayLeft $displayRight
 }
 
 ### Workspaces 
@@ -225,7 +234,7 @@ output * bg `find $wallpapers_path -type f | shuf -n 1` fill
 
 exec swayidle -w \
          timeout $lockAfterSeconds $lock \
-         timeout $lockAfterSeconds 'swaymsg "output * dpms off"' \
+         timeout $monitorsOffAfterSeconds 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep $lock
 
@@ -320,7 +329,8 @@ for_window [title="switch workspace" app_id="Alacritty"] floating enable
 for_window [title="rename workspace" app_id="Alacritty"] floating enable 
 for_window [app_id="Alacritty"] opacity 0.9
 for_window [title="launcher"] floating enable, opacity 0.9, border pixel
-for_window [app_id="Alacritty" title="start"] floating enable, opacity 0.9, border pixel
+for_window [app_id="Alacritty" title="timer"] floating enable, opacity 0.9, border pixel
+for_window [class="Yubico Authenticator" instance="yubioath-desktop"] floating enable
 
 smart_gaps on
 gaps inner $innerGap
