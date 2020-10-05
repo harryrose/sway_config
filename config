@@ -8,7 +8,7 @@ include ~/.config/sway/local.d/*
 set {
   $audioMixer pamix -t "pamix"
   $browser google-chrome-stable --new-window
-  $lock swaylock -f -c 000000
+  $lock "swaylock -f -c 000000"
   $switcher alacritty -t "launcher" -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
   $timerStart alacritty -t "timer" -e bash -c "~/.config/sway/watson.sh start"
   $timerLog alacritty -t "timer" -e bash -c "~/.config/sway/watson.sh logday"
